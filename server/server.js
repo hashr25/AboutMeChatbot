@@ -13,7 +13,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Serve static Angular files
-app.use(express.static(path.join(__dirname, '../client/dist/client')));
+app.use(express.static(path.join(__dirname, '../client/dist/about-me-chatbot')));
 
 // Middleware
 app.use(cors());
@@ -49,7 +49,7 @@ app.post('/api/assistants/message', async (req, res) => {
 
 // Catch-all route to serve Angular app
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/dist/client/index.html'));
+  res.sendFile(path.join(__dirname, '../client/dist/about-me-chatbot/index.html'));
 });
 
 // Start the server
