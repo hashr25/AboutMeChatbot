@@ -2,9 +2,9 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "server.ts",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "node dist/server.ts",
     "dev": "ts-node server.ts"
   },
   "keywords": [],

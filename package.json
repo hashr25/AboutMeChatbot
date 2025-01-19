@@ -2,9 +2,9 @@
     "name": "fullstack-app",
     "version": "1.0.0",
     "scripts": {
-        "start": "node server/server.js",
+        "start": "node server/server.ts",
         "build-client": "cd client && npm install && ng build --configuration production",
-        "start-server": "npm run build-client && node server/server.js",
+        "start-server": "npm run build-client && node server/server.ts",
         "dev": "concurrently \"npm run dev-client\" \"npm run dev-server\"",
         "dev-client": "cd client && ng serve --proxy-config proxy.conf.json",
         "dev-server": "cd server && ts-node server.ts"
