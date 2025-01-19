@@ -1,10 +1,10 @@
-import { OpenAI } from 'openai';
-import dotenv from 'dotenv';
+const { OpenAI } = require('openai');
+const dotenv = require('dotenv');
 
 console.log('Loading environment variables...');
 console.log('NODE_ENV:', process.env.NODE_ENV);
 console.log('dotenv.config()...', dotenv.config());
-const apiKey = process.env.OPENAI_API_KEY ?? ""; // Load API key from environment variables
+const apiKey = process.env.OPENAI_API_KEY || ""; // Load API key from environment variables
 console.log("apiKey", apiKey);
 
 // Initialize OpenAI API
@@ -16,11 +16,7 @@ const openai = new OpenAI({
  * Creates a new thread and returns the thread ID.
  * @returns {Promise<string>} The ID of the created thread.
  */
-/**
- * Creates a new thread and returns the thread ID.
- * @returns {Promise<string>} The ID of the created thread.
- */
-export async function createThread(): Promise<string> {
+async function createThread() {
   try {
     const response = await openai.beta.threads.create();
 
@@ -35,11 +31,11 @@ export async function createThread(): Promise<string> {
 
 /**
  * Sends a message to the assistant and gets the response.
- * @param threadId The ID of the thread.
- * @param message The message to send to the assistant.
+ * @param {string} threadId The ID of the thread.
+ * @param {string} message The message to send to the assistant.
  * @returns {Promise<string>} The assistant's response.
  */
-export async function sendMessage(threadId: string, message: string): Promise<string> {
+async function sendMessage(threadId, message) {
   try {
     // Send the message
     console.log('Sending message: ' + message);
@@ -60,7 +56,7 @@ export async function sendMessage(threadId: string, message: string): Promise<st
         assistant_id: assistant.id, // Replace with your assistant ID
       }).finalMessages();
 
-    const messageContent: any = runResponse[0].content[0];
+    const messageContent = runResponse[0].content[0];
 
     // Extract and return the assistant's response
     const assistantResponse = messageContent?.text?.value;
@@ -70,3 +66,9 @@ export async function sendMessage(threadId: string, message: string): Promise<st
     throw new Error('Failed to get assistant response.');
   }
 }
+
+// Export the functions
+module.exports = {
+  createThread,
+  sendMessage,
+};
