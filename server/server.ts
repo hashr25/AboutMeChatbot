@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
 
 import { createThread, sendMessage } from './services/openaiService';
 
@@ -10,6 +11,9 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Serve static Angular files
+app.use(express.static(path.join(__dirname, '../client/dist/client')));
 
 // Middleware
 app.use(cors());
@@ -44,6 +48,11 @@ app.post(
       res.status(500).json({ error: 'Failed to get assistant response.' });
     }
   }) as express.RequestHandler);
+
+// Catch-all route to serve Angular app
+app.get('*', (req: Request, res: Response) => {
+  res.sendFile(path.join(__dirname, '../client/dist/client/index.html'));
+});
 
 // Start the server
 app.listen(PORT, () => {
