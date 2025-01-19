@@ -48,6 +48,5 @@ Thumbs.db
 
 # Ignore all .env files
 .env
-*environment*.ts
 
 *dist*
