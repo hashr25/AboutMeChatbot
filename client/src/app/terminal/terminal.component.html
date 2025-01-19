@@ -1,0 +1,13 @@
+<div class="terminal">
+  <!-- Output Component -->
+  <app-terminal-output [messages]="messages"></app-terminal-output>
+
+  <!-- Loading Indicator -->
+  <div class="loader-holder" *ngIf="loading">
+    <div class="loader"></div>
+  </div>
+
+
+  <!-- Input Component -->
+  <app-terminal-input (userMessage)="handleUserMessage($event)"></app-terminal-input>
+</div>

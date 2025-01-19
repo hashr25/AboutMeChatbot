@@ -1,0 +1,10 @@
+<div id="input-area">
+  <span class="prompt">> </span>
+  <input
+    #inputField
+    type="text"
+    id="terminal-input"
+    [(ngModel)]="input"
+    (keydown.enter)="sendMessage()"
+  />
+</div>

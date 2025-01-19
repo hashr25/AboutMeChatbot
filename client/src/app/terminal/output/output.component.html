@@ -1,0 +1,5 @@
+<div #outputContainer class="outputContainer">
+  <div class="message" *ngFor="let message of messages" [ngClass]="message.sender">
+    {{ message.text }}
+  </div>
+</div>

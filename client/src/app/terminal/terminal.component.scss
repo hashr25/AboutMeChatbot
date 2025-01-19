@@ -1,0 +1,72 @@
+.terminal {
+  width: 70vw;
+  max-width: 1000px;
+  min-width: 400px;
+  height: 70vh;
+  background: #000;
+  border: 2px solid #00ff00;
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 0 20px #00ff00;
+  overflow: hidden;
+
+  .output {
+    flex-grow: 1;
+    height: 95%;
+    overflow-y: hidden;
+    padding: 10px;
+  }
+
+  app-terminal-input {
+    height: 5%;
+    border-radius: 3px;
+    margin-top: 15px;
+    padding-bottom: 8px;
+  }
+}
+
+/* Loader */
+/* Base taken from https://css-loaders.com but altered to work in this case*/
+.loader-holder {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin-inline: auto;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 10px;
+  padding: 5px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3;
+  background-color: #004b0654;
+  z-index: 100;
+}
+
+.loader {
+  width: fit-content;
+  font-size: 40px;
+  font-family: system-ui, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #0000;
+  -webkit-text-stroke: 1px #00ff00;
+  background:
+    linear-gradient(90deg, #00ff00 33%, #00ff00 0 67%, #0000 0) 0/300% 100% no-repeat text;
+  animation: l2 2s linear infinite;
+}
+
+.loader:before {
+  content: "Thinking...";
+}
+
+@keyframes l2 {
+  0% {
+    background-position: 100%
+  }
+}

@@ -1,0 +1,21 @@
+#input-area {
+    display: flex;
+    align-items: center;
+    padding-top: 10px; /* Add spacing above the input */
+  }
+  
+  .prompt {
+    color: #00ff00;
+    margin-right: 5px; /* Space between the prompt and input field */
+  }
+  
+  #terminal-input {
+    flex-grow: 1; /* Allow input field to expand to fill available space */
+    background: transparent;
+    border: none;
+    color: #00ff00;
+    outline: none;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1em;
+  }
+  

@@ -1,0 +1,71 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Fill the allocated space in terminal */
+  overflow: hidden; /* Prevent overflow on the host container */
+}
+
+/* Scrolling container */
+.outputContainer {
+  display: flex; /* Flex container for messages */
+  flex-direction: column; /* Stack messages vertically */
+  flex-grow: 1; /* Expand to fill available vertical space */
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  padding: 10px; /* Provide spacing inside the scrolling area */
+
+  /* Scrollbar styling for WebKit Browsers (Chrome, Edge, etc.) */
+  &::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+    height: 12px; /* Height of the horizontal scrollbar, if present */
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #000; /* Scrollbar track (background) color */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #00ff00; /* Scrollbar thumb (handle) color */
+    border-radius: 50px; /* Fully rounded scrollbar thumb */
+    border: none; /* Remove any borders that might affect corners */
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #00b300; /* Thumb color on hover */
+  }
+
+  /* Remove arrows */
+  &::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+    display: none; /* Completely hide scrollbar arrows */
+  }
+
+  /* For Firefox */
+  scrollbar-width: thin; /* Thin scrollbar */
+  scrollbar-color: #00ff00 #000; /* Thumb and track colors */
+}
+
+
+/* Message styling */
+.message {
+  display: block;
+  max-width: 70%; /* Prevent messages from being too wide */
+  padding: 5px 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  word-wrap: break-word;
+  white-space: pre-wrap; /* Preserve whitespace and wrap text */
+}
+
+.message.user {
+  align-self: flex-end; /* Align user messages to the right */
+  background-color: #002200; /* Dark green for user messages */
+  color: #00ff00;
+}
+
+.message.bot {
+  align-self: flex-start; /* Align bot messages to the left */
+  background-color: #001100; /* Darker green for bot messages */
+  color: #00b300;
+}
