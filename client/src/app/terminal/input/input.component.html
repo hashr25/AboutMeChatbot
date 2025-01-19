@@ -5,6 +5,8 @@
     type="text"
     id="terminal-input"
     [(ngModel)]="input"
+    (keyup.enter)="sendMessage()" 
     (keydown.enter)="sendMessage()"
+    [autocomplete]="'off'" 
   />
 </div>
