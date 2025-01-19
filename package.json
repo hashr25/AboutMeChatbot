@@ -7,8 +7,7 @@
         "start-server": "npm run build-client && node server/server.js",
         "dev": "concurrently \"npm run dev-client\" \"npm run dev-server\"",
         "dev-client": "cd client && ng serve --proxy-config proxy.conf.json",
-        "dev-server": "cd server && ts-node server.js",
-        "heroku-postbuild": "cd client && npm install && npm run build"
+        "dev-server": "cd server && ts-node server.js"
     },
     "dependencies": {
         "@angular/cli": "^19.1.2",
