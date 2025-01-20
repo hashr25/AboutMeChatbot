@@ -20,7 +20,6 @@ export class TerminalComponent {
   constructor(private openaiService: OpenAIService) {
     this.openaiService.createThread().subscribe(
       (threadResponse) => {
-        console.log('Thread initialized with ID:', threadResponse);
         this.threadId = threadResponse.threadId;
 
         this.fetchIntroductionMessage();
@@ -40,20 +39,16 @@ export class TerminalComponent {
     this.messages.push({ sender: 'user', text: userMessage });
 
     // Show the loading indicator
-    console.log('Setting loading to true');
     this.loading = true;
 
     // Fetch bot response from OpenAI
     this.openaiService.sendMessage(this.threadId ?? '', userMessage).subscribe(
       (response: any) => {
-        console.log('Bot response from backend:', response);
-
         const responseText = this.stripReferences(response.response);
         this.messages.push({ sender: 'bot', text: responseText });
 
 
         // Hide the loading indicator
-        console.log('Setting loading to false');
         this.loading = false;
 
       },
@@ -76,11 +71,9 @@ export class TerminalComponent {
 
     this.openaiService.getIntro().subscribe(
       (response: any) => {
-        console.log('Intro message:', response.introMessage);
         this.messages.push({ sender: 'bot', text: response.introMessage });
       },
       (error: any) => {
-        console.log('Error fetching intro message:', error);
         this.messages.push({
           sender: 'bot', text: 'Hello! I am an AI assistant. How can I help you today?'
         });
