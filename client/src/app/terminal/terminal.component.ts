@@ -51,7 +51,7 @@ export class TerminalComponent {
         const responseText = this.stripReferences(response.response);
         this.messages.push({ sender: 'bot', text: responseText });
 
-        
+
         // Hide the loading indicator
         console.log('Setting loading to false');
         this.loading = false;
@@ -72,21 +72,17 @@ export class TerminalComponent {
 
   private fetchIntroductionMessage(): void {
 
-    var introductionMessage: string = "";
+    var introductionMessage: any;
 
     this.openaiService.getIntro().subscribe(
       (response: any) => {
-        console.log('Intro message from backend:', response);
-        introductionMessage = response.response;
+        this.messages.push({ sender: 'bot', text: response.introMessage });
       },
       (error: any) => {
-        console.error('Error fetching intro message:', error);
-        introductionMessage = 'Hello! I am an AI assistant. How can I help you today?';
-      }
-    )
-    
-    // Simulate an AI-generated introductory message
-    this.messages.push({ sender: 'bot', text: introductionMessage });
+        this.messages.push({
+          sender: 'bot', text: 'Hello! I am an AI assistant. How can I help you today?'
+        });
+      });
 
     // Hide the loader once the intro message is displayed
     this.loading = false;
