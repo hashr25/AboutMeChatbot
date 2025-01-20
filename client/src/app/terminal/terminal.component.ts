@@ -76,9 +76,11 @@ export class TerminalComponent {
 
     this.openaiService.getIntro().subscribe(
       (response: any) => {
+        console.log('Intro message:', response.introMessage);
         this.messages.push({ sender: 'bot', text: response.introMessage });
       },
       (error: any) => {
+        console.log('Error fetching intro message:', error);
         this.messages.push({
           sender: 'bot', text: 'Hello! I am an AI assistant. How can I help you today?'
         });
