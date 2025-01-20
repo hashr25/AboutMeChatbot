@@ -3,6 +3,7 @@ import { OpenAIService } from '../services/openai/openai.service';
 import { CommonModule } from '@angular/common';
 import { InputComponent } from './input/input.component';
 import { OutputComponent } from './output/output.component';
+import { environment } from '../../environments/environment.prod';
 
 @Component({
   selector: 'app-terminal',
@@ -70,7 +71,19 @@ export class TerminalComponent {
   }
 
   private fetchIntroductionMessage(): void {
-    const introductionMessage = 'Hello! I am an AI assistant here to chat about Randy Hash. I can answer questions about his professional experience, projects, and more. Feel free to ask me anything!';
+
+    var introductionMessage: string = "";
+
+    this.openaiService.getIntro().subscribe(
+      (response: any) => {
+        console.log('Intro message from backend:', response);
+        introductionMessage = response.response;
+      },
+      (error: any) => {
+        console.error('Error fetching intro message:', error);
+        introductionMessage = 'Hello! I am an AI assistant. How can I help you today?';
+      }
+    )
     
     // Simulate an AI-generated introductory message
     this.messages.push({ sender: 'bot', text: introductionMessage });

@@ -47,6 +47,13 @@ app.post('/api/assistants/message', async (req, res) => {
   }
 });
 
+// Get Intro Message
+app.get('/api/intro', (req, res) => {
+  res.json({
+    introMessage: process.env.INTRO_MESSAGE || 'Hi! I am an AI assistant. How can I help you today?',
+  });
+});
+
 // Catch-all route to serve Angular app
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/dist/about-me-chatbot/index.html'));

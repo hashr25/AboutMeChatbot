@@ -17,4 +17,8 @@ export class OpenAIService {
   sendMessage(threadId: string, message: string): Observable<{ response: string }> {
     return this.http.post<{ response: string }>(`${this.apiUrl}/message`, { threadId, message });
   }
+
+  getIntro(): Observable<{ intro: string }> {
+    return this.http.get<{ intro: string }>(`${this.apiUrl}/intro`);
+  }
 }
