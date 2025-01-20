@@ -48,7 +48,9 @@ app.post('/api/assistants/message', async (req, res) => {
 });
 
 // Get Intro Message
-app.get('/api/intro', (req, res) => {
+app.get('/api/assistants/intro', (req, res) => {
+  console.log('introMessage:', process.env.INTRO_MESSAGE);
+  console.log('process.env:', process.env);
   res.json({
     introMessage: process.env.INTRO_MESSAGE || 'Hi! I am an AI assistant. How can I help you today?',
   });
